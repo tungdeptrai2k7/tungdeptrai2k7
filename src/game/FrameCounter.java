@@ -7,6 +7,7 @@ public class FrameCounter {
     public FrameCounter(int countMax) {
         this.countMax = countMax;
         this.count = 0;
+
     }
 
     public boolean run() {

@@ -1,7 +1,8 @@
 package game.player;
 
 import game.*;
-import game.renderer.AnimationRenderer;
+import game.physics.BoxCollider;
+import game.physics.Physics;
 import tklibs.Mathx;
 import tklibs.SpriteUtils;
 
@@ -27,8 +28,7 @@ public class Player extends GameObject {
         images.add(SpriteUtils.loadImage("assets/images/players/straight/4.png"));
         images.add(SpriteUtils.loadImage("assets/images/players/straight/5.png"));
         images.add(SpriteUtils.loadImage("assets/images/players/straight/6.png"));
-//        this.renderer = new AnimationRenderer(images);
-        this.renderer = new PlayerRenderer("Player", images);
+        this.renderer = new PlayerRenderer("player", images);
     }
 
     @Override
@@ -63,13 +63,12 @@ public class Player extends GameObject {
 
     private void fire() {
         if(GameWindow.isFirePress) {
-            PlayerBullet bullet = new PlayerBullet();
+            PlayerBullet bullet = GameObject.recycle(PlayerBullet.class);
             bullet.position.set(this.position.x, this.position.y);
             GameObject.addGameObject(bullet);
             this.fireCounter.reset();
         }
     }
-
     private void limitPlayerPosition() {
         int halfWidth = (int)(Settings.PLAYER_WIDTH
                 * this.anchor.x);

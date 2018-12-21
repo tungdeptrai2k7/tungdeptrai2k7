@@ -11,12 +11,9 @@ import javax.swing.*;
 
 public class GameCanvas extends JPanel{
     public GameCanvas() {
-        GameObject.createGameObject(Background.class);
-        GameObject.createGameObject(Player.class);
-        GameObject.createGameObject(Enemy.class);
-        // arrayList.add()
-        // arrayList.get()
-        // arrayList.size()
+        GameObject.recycle(Background.class);
+        GameObject.recycle(Player.class);
+        GameObject.recycle(Enemy.class);
     }
 
     @Override
